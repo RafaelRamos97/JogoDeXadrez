@@ -15,6 +15,10 @@
             this.Tab = tab;
         }
 
+        public void incrementarQteMovimento()
+        {
+            qteMovimentos++;
+        }
        
     }
 }
