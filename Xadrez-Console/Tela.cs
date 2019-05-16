@@ -16,6 +16,12 @@ namespace Xadrez_Console
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
             Console.WriteLine("Proximo a jogar: " + partida.jogadorAtual);
+            
+            if (partida.xeque)
+            {
+                Console.WriteLine("XEQUE!");
+            }
+
             Console.WriteLine();
         }
 
