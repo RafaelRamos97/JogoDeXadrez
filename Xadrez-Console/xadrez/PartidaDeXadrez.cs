@@ -39,7 +39,7 @@ namespace xadrez
             }
 
             //#JogadaEspecial RoquePequeno
-            if(p is Rei && destino.Coluna == origem.Coluna + 2)
+            if (p is Rei && destino.Coluna == origem.Coluna + 2)
             {
                 Posicao origemTorre = new Posicao(origem.Linha, origem.Coluna + 3);
                 Posicao destinoTorre = new Posicao(origem.Linha, origem.Coluna + 1);
@@ -103,6 +103,35 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você não pode se colocar em xeque!");
             }
+
+            Peca p = tab.peca(destino);
+
+
+
+            // #jogadaespecial promocao
+
+            if (p is Peao)
+            {
+
+                if ((p.Cor == Cor.Branco && destino.Linha == 0) || (p.Cor == Cor.Preto && destino.Linha == 7))
+                {
+
+                    p = tab.retirarPeca(destino);
+
+                    pecas.Remove(p);
+
+                    Peca dama = new Dama(tab, p.Cor);
+
+                    tab.colocarPeca(dama, destino);
+
+                    pecas.Add(dama);
+
+                }
+
+            }
+
+
+
 
             if (estaEmXeque(adversaria(jogadorAtual)))
             {
